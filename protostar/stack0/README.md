@@ -1,4 +1,4 @@
-# Explaination
+# Explanation
 
 1. **Compile**
 
