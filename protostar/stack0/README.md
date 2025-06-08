@@ -32,7 +32,7 @@ gdb ./Stack0
 5. **When it stops print the addresses**
 ```gdb
 (gdb) print &buffer        # start of buffer
-(gdb) print &modified      # or &return_addr slot
+(gdb) print &modified     
 ```
 ![Disas](Images/GDBdisas.png)
 
@@ -51,3 +51,18 @@ This gives you the number of filler bytes you need to reach `target` (whether it
 python3 -c 'print("A"*64 + "B")' | ./Stack0
 ```
 ![Success](Images/Success.png)
+
+
+# What I learned
+
+- A basic stack-based buffer overflow can redirect execution with just user-supplied data—no need for advanced tricks.
+- The magic number here is 64 bytes.
+- GDB’s basics—disas, info registers, simple breakpoints—are enough to prove the takeover.
+- Turning off modern flags (-fno-stack-protector, -z execstack, etc.) lets you see the raw bug in action.
+
+# Ce que j’ai appris
+
+- Un simple overflow sur la pile suffit à détourner le flux d’exécution ; pas besoin de gadgets sophistiqués.
+- **64 octets** exactement : c’est la distance qui me donne la main sur EIP.
+- Trois commandes GDB — `disas`, `break`, `info reg` — et le contrôle est évident.
+- En désactivant les protections (`-fno-stack-protector`, `-z execstack`, `-no-pie`), on voit la vulnérabilité à l’état brut.
