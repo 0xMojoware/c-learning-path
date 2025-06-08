@@ -28,7 +28,7 @@ print &modified
 print (char *)&modified - (char *)&buffer
 64 #Now test offset plus payload
 ```
-![Offset](images\Offset.png)
+![Offset](Images/Offset.png)
 
 4. **Build Payload and confirm** 
 - Payload will look like
