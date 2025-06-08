@@ -5,7 +5,6 @@
 gcc -m32 -std=gnu89 -fno-stack-protector -g -z execstack -no-pie Stack1.c -o Stack1
 ```
 
-
 2. **Find interesting break point**
 - Check for the use of any unsafe function, such as get/strcpy/fgets.
 - Find interest address for modified (0x080491eb)
