@@ -1,6 +1,6 @@
-#Source code
+# Source code
 
-```
+```c
 #include <stdlib.h>
 #include <unistd.h>
 #include <stdio.h>
@@ -112,7 +112,6 @@ export GREENIE="…your payload…"
 ```
 
 Je demande au shell :
-
 1. « Ajoute une variable d’environnement nommée GREENIE avec cette valeur à tout processus que je lance à partir de maintenant. »
 2. Au démarrage de ./stack2, le noyau crée un nouveau processus dont le bloc d’environnement contient GREENIE.
 3. Dans le code C, cette ligne :
