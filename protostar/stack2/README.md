@@ -1,3 +1,7 @@
+# Objective
+
+Stack2 looks at environment variables, and how they can be set.
+
 # Source code
 
 ```c

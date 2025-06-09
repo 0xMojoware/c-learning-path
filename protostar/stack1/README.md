@@ -1,3 +1,7 @@
+# Objective
+
+This level looks at the concept of modifying variables to specific values in the program, and how the variables are laid out in memory.
+
 # Source code
 
 ```c
